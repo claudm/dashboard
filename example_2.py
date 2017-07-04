@@ -165,7 +165,7 @@ def index():
                         {"type": "chart", "option": json.dumps(chart2, indent=2)}
         ]
     }
-    return render_template("zabbix.html", **render)
+    return render_template("main.html", **render)
 
 
 
