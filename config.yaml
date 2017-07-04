@@ -1,0 +1,4 @@
+url:    "http://172.16.16.229/zabbix"
+auth:
+        user: admin
+        password: admin

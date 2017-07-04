@@ -1,0 +1,51 @@
+<!-- ECharts pronto para ter um tamanho (largura e altura) de Dom -->
+<div id="main" style="height:400px"></div>
+<!-- ECharts arquivos em única-->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    // Configuração de caminho
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    // uso
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar' // Usando a barra de histograma é módulos carregados, por demanda de carga
+        ],
+        function (ec) {
+            // Com base pronta dom, inicialização echarts gráfico
+            var myChart = ec.init(document.getElementById('main')); 
+            /* var option = {
+               tooltip: {
+               show: true
+               },
+               legend: {
+               data:['de vendas']
+               },
+               xAxis : [
+               {
+               type : 'category',
+               data : [ "Camisa", "camisola", "camisa de chiffon", "calças", "Sapatos", "meia"]
+               }
+               ],
+               yAxis : [
+               {
+               type : 'value'
+               }
+               ],
+               series : [
+               {
+               "name":"de vendas",
+               "type":"bar",
+               "data":[5, 20, 40, 10, 10, 20]
+               }
+               ]
+               }; */
+            // Carregar dados dos objetos echarts
+            myChart.setOption(option); 
+        }
+    );
+</script>
