@@ -197,7 +197,7 @@ class Chart(dict):
 
 def main():
     c = Chart().tooltip()
-    print (json.dumps(c))
+   # print (json.dumps(c))
 
 if __name__ == "__main__":
     main()
