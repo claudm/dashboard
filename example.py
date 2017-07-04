@@ -2,7 +2,7 @@
 # py-echarts
 from flask import Flask, render_template
 import json
-from models import Chart
+from options import Chart
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def index():
              .y_axis(formatter="{value} C") \
              .line(u"temperatura mais alta", [10, 20, 30, 40, 30, 20, 10], mark_max_point=True, show_item_label=True) \
              .bar(u"temperatura mínima", [5, 10, 5, 10, 5, 6, 7]) \
-             .pie(name="teste", data={"Java": 50, "PHP": 50, "Python": 100}, center=["20%", "30%"], radius="15%")
+            # .pie(name="teste", data={"Java": 50, "PHP": 50, "Python": 100}, center=["20%", "30%"], radius="15%")
 
 
     print json.dumps(chart2, indent=2)

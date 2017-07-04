@@ -11,29 +11,29 @@ class Chart(dict):
         super(Chart, self).__init__()
         self["calculable"] = True
         self["tooltip"] = {"show": True}
-        # self["toolbox"] = {
-            # "show": True,
-            # "x": "left",
-            # 'feature': dict(mark = dict(show=1),
-           # dataView = dict(show= 1, readOnly= 0, title='Dados',
-                # lang=['Dados','voltar','atualizar']),
-           # magicType = dict(show= 1, type= ['line', 'bar'],
-           # title=dict(
-	            # line= 'linha',
-	            # bar= 'barra',
-	            # stack= 'pilha',
-	            # tiled='telha'
-	        # )),
-            # dataZoom = dict(
-                    # show = 1,
-                    # title = dict(
-                        # back= "Voltar",
-                        # zoom='zoom'
-                    # )
-                # ),
-            # restore = dict(show= 1,title='atualizar'),
-            # saveAsImage = dict(show= 1,title='salvar'))
-        # }
+        self["toolbox"] = {
+            "show": True,
+            "x": "left",
+            'feature': dict(mark = dict(show=1),
+           dataView = dict(show= 1, readOnly= 0, title='Dados',
+                lang=['Dados','voltar','atualizar']),
+           magicType = dict(show= 1, type= ['line', 'bar'],
+           title=dict(
+	            line= 'linha',
+	            bar= 'barra',
+	            stack= 'pilha',
+	            tiled='telha'
+	        )),
+            dataZoom = dict(
+                    show = 1,
+                    title = dict(
+                        back= "Voltar",
+                        zoom='zoom'
+                    )
+                ),
+            restore = dict(show= 1,title='atualizar'),
+            saveAsImage = dict(show= 1,title='salvar'))
+        }
         self["legend"] = {
             "show": True,
             "data": []

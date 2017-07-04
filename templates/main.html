@@ -2,55 +2,80 @@
 
 <html>
     <head>
-        <title>teste</title>
-        <!--         <script src="http://echarts.baidu.com/build/dist/echarts.js"></script> -->
-        <script src="/static/source/echarts.js"> </script>
-        <script>
-         require.config({
-             paths: {
-                 echarts: '/static/source'
-             }
-         });
-        </script>
+        <title>{{Title}}</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.6.2/echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <link rel=stylesheet type=text/css href="static/css/style.css">
+      	<link rel="stylesheet" href="static/assets/bootstrap.min.css" media="screen" />
+
+	<link rel="stylesheet" href="static/assets/extra.css" media="screen" />
+
     </head>
 
     <body>
-        <h3>{{title}}</h3>
+    <div class="navbar-header"><h3>{{title}}</h3></div>
+
         {% set i = 1 %}
         {% for template in templates %}
         {% if template.type == 'chart' %}
-        <p>
-            CHART {{i}}
-        </p>
-        <div id="chart_{{i}}" style="height:400px"></div>
-        <script type="text/javascript">
-            require([
-            'echarts',
-            'echarts/chart/bar',
-            'echarts/chart/line',
-            'echarts/chart/pie'
-            ],
-            function (ec) {
-            var myChart = ec.init(document.getElementById("chart_{{i}}"));
-            var option = {{template.option|safe}};
-            myChart.setOption(option);
-            });
-        </script>
+
+        <div id="chart_{{i}}" style="height:400px" class="chart"></div></br>
+
+            <script type="text/javascript">
+
+
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+        var chart{{i}} = echarts.init(document.getElementById("chart_{{i}}"));
+
+
+        var option = {{template.option|safe}};
+
+
+        chart{{i}}.setOption(option);
+         $(window).on('resize', function(){
+        if(chart{{i}} != null && chart{{i}} != undefined){
+            chart.resize();
+        }
+    });
+
+</script>
+
+    </script>
 
         {% set i = i + 1 %}
-        {% elif template.type == 'radio' %}
-        <p>
-            RADIO HERE!
-        </p>
-        {% elif template.type == 'date' %}
-        <p>
-            DATE HERE!
-        </p>
-        {% elif template.type == 'table' %}
-        <p>
-            TABLE HERE!
-        </p>
+
         {% endif %}
         {% endfor %}
+        <script>
+
+
+
+   setInterval(
+    function()
+    {
+        for (i = 1; i < $(".chart").length +1; i++) {
+
+                var chart1 = 'chart';
+                $.getJSON(
+
+                    $SCRIPT_ROOT+'/update?number='+ i,
+
+                    function(data)
+
+                    {
+                var chart = echarts.init(document.getElementById("chart_" + data.name));
+                //console.log(data);
+                var option = data.option ;
+                chart.setOption(option);
+
+                    });
+            };
+
+    },
+    150 * 60);
+
+
+    </script>
     </body>
 </html>
